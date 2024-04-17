@@ -1,0 +1,67 @@
+name: mentalhealth_app
+description: "A new Flutter project."
+
+
+publish_to: 'none' 
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.3.2 <4.0.0'
+
+
+
+# PACKAGES
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Icons
+  cupertino_icons: ^1.0.6
+  iconsax: ^0.0.8
+
+  # State Management
+  get: ^4.6.5
+  get_storage: ^2.1.1
+
+  # Utility Packages
+  http: ^1.1.0
+  intl: ^0.19.0
+  logger: ^2.0.1
+  lottie: ^3.1.0
+  url_launcher: ^6.1.12
+  connectivity_plus: ^6.0.1
+  flutter_native_splash: ^2.3.9
+  smooth_page_indicator: ^1.1.0
+
+
+  
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  
+  flutter_lints: ^3.0.0
+
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/icons/
+    - assets/images/
+    - assets/images/onboarding_images/
+    - assets/images/animations/
+    - assets/logos/
+
+
+  fonts:
+    - family: Urbanist
+      fonts:
+        - asset: assets/fonts/Urbanist-Regular.ttf
+          # weight: 300
+        - asset: assets/fonts/Urbanist-Medium.ttf
+          # weight: 300
+        - asset: assets/fonts/Urbanist-Bold.ttf
+          # weight: 300
+        - asset: assets/fonts/Urbanist-ExtraBold.ttf
+          # weight: 300
