@@ -66,7 +66,7 @@ class MhLoginForm extends StatelessWidget {
               width: double.infinity,
               decoration: const BoxDecoration(
                 boxShadow: [
-                  BoxShadow(
+                  BoxShadow( 
                     color: Color.fromARGB(20, 0, 0, 0),
                     spreadRadius:0,
                     blurRadius: 16,
