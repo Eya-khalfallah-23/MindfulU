@@ -28,11 +28,8 @@ class NavigationMenu extends StatelessWidget {
               : MhColors.dark.withOpacity(0.1),
           destinations: const [
             NavigationDestination(
-                icon: Icon(
-                  Iconsax.user,
-                  color: MhColors.green,
-                ),
-                label: 'Profile'),
+                icon: Icon(Icons.contacts_outlined, color: MhColors.green),
+                label: 'Contact'),
             NavigationDestination(
               icon: Icon(Iconsax.activity, color: MhColors.green),
               label: 'Evaluation',
@@ -41,8 +38,11 @@ class NavigationMenu extends StatelessWidget {
                 icon: Icon(Iconsax.message, color: MhColors.green),
                 label: 'Chatbot'),
             NavigationDestination(
-                icon: Icon(Icons.contacts_outlined, color: MhColors.green),
-                label: 'Contact'),
+                icon: Icon(
+                  Iconsax.user,
+                  color: MhColors.green,
+                ),
+                label: 'Profile'),
           ],
         ),
       ),
@@ -55,9 +55,9 @@ class NavigationController extends GetxController {
   final Rx<int> selectedIndex = 0.obs;
 
   final screens = [
-    const UserProfile(),
+    Container(color: Colors.purple),
     const EvaluationMain(),
     Container(color: Colors.yellow),
-    Container(color: Colors.purple),
+    const UserProfile(),
   ];
 }

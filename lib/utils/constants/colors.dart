@@ -5,9 +5,11 @@ class MhColors {
 
   //App Basic Colors
   static const Color blue = Color(0xFF1E728E); //0xFF---
+  static const Color lightBlue = Color(0xFFB8C1EC); //0xFF---
   static const Color green = Color(0xFFA4C691);
   static const Color purple = Color(0xFFC29BB6);
   static const Color orange = Color(0xFFEEAFA6);
+  static const Color pink = Color(0xFFFECED4);
 
   //Text Colors
   static const Color textBlue = Color(0xFF1E728E); //0xFF---

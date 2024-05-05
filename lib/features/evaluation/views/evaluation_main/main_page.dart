@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:mentalhealth_app/common/widgets/custom_shapes/curved_edges/curved_edges.dart';
-import 'package:mentalhealth_app/features/evaluation/views/evaluations/evaluation_page.dart';
 import 'package:mentalhealth_app/utils/constants/image_strings.dart';
 
 import '../../../../common/widgets/custom_shapes/containers/circle_container.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sizes.dart';
+import '../mood_tracker/mood.dart';
 import 'widgets/card_histo.dart';
 
 class EvaluationMain extends StatelessWidget {
@@ -78,7 +78,7 @@ class EvaluationMain extends StatelessWidget {
               Positioned(
                 top: 270,
                 child: GestureDetector(
-                  onTap: () => Get.to(() => const EvaluationPage()),
+                  onTap: () => Get.to(() => const MoodSelectionScreen()),
                   child: Container(
                     decoration: const BoxDecoration(
                       boxShadow: [

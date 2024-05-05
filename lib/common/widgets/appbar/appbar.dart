@@ -7,7 +7,7 @@ import '../../../utils/constants/colors.dart';
 
 class MhAppBar extends StatelessWidget implements PreferredSizeWidget {
   const MhAppBar({
-    Key? key,
+    super.key,
     this.title,
     this.showBackArrow = false,
     this.actions,
@@ -16,7 +16,7 @@ class MhAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.leadingIcon = Iconsax.arrow_left,
     this.totalQuestions = 0,
     this.currentQuestionIndex = 0,
-  }) : super(key: key);
+  });
 
   final Widget? title;
   final bool showBackArrow;
@@ -53,13 +53,13 @@ class MhAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: title,
       actions: actions,
       bottom: PreferredSize(
-        preferredSize: Size.fromHeight(4),
-        child: Container(
+        preferredSize: const Size.fromHeight(4),
+        child: SizedBox(
           width: MediaQuery.of(context).size.width * 0.7,
           child: LinearProgressIndicator(
             value: progress,
             backgroundColor: Colors.grey[300],
-            valueColor: AlwaysStoppedAnimation<Color>(MhColors.orange),
+            valueColor: const AlwaysStoppedAnimation<Color>(MhColors.orange),
             minHeight: 8,
             borderRadius: BorderRadius.circular(10)
           ),
