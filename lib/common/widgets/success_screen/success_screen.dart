@@ -29,7 +29,6 @@ class SuccessScreen extends StatelessWidget {
                 image: AssetImage(image),
                 width: MhHelperFunction.screenWidth() * 0.6,
               ),
-
               const SizedBox(
                 height: MhSizes.spaceBetweenSections,
               ),

@@ -68,7 +68,7 @@ class MhCardHisto extends StatelessWidget {
                           fontSize: 12.0,
                           fontWeight: FontWeight.w400,
                           color: MhColors.blue,
-                        )),
+                        ))  ,
                     Text('${date.day}',
                         style: const TextStyle(
                           fontSize: 14.0,
