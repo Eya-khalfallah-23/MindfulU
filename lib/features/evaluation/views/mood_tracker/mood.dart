@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:mentalhealth_app/utils/constants/image_strings.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sizes.dart';
-import '../evaluations/evaluation_page.dart';
 import '../evaluations/tests.dart';
 
 class MoodSelectionScreen extends StatefulWidget {

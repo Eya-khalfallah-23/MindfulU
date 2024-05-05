@@ -24,4 +24,7 @@ class MhImages {
       "assets/images/animations/success-verify.gif";
 
   static const String profilePic = "assets/images/profile.jpg";
+  static const String chatbotpic1 = "assets/images/Frame.png";
+  static const String chatbotpic2 = "assets/images/Group 33.png";
 }
+

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+
+import 'package:mentalhealth_app/features/chat/views/welcoming/welcome_page/welcome_page.dart';
 import 'package:mentalhealth_app/features/evaluation/views/evaluation_main/main_page.dart';
 import 'package:mentalhealth_app/features/personalization/views/profile/profile.dart';
 import 'package:mentalhealth_app/utils/constants/colors.dart';
@@ -57,7 +59,7 @@ class NavigationController extends GetxController {
   final screens = [
     Container(color: Colors.purple),
     const EvaluationMain(),
-    Container(color: Colors.yellow),
-    const UserProfile(),
+    const WelcomePage(),
+    Container(color: Colors.purple),
   ];
 }
