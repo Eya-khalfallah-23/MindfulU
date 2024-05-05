@@ -170,7 +170,7 @@ class RecentChats extends StatelessWidget {
                 Icons.add,
                 color: Colors.white,
               ),
-              onPressed: () => Get.to(() => const FirstConversation()),
+              onPressed: () => Get.to(() => FirstConversation()),
             ),
           ),
         ],

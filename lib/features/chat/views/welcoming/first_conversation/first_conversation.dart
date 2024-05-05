@@ -1,221 +1,215 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:mentalhealth_app/features/chat/views/conversations/recent_chats/recent_chats.dart';
+import 'package:mentalhealth_app/common/widgets/custom_shapes/containers/circle_container.dart';
 import 'package:mentalhealth_app/utils/constants/colors.dart';
 import 'package:mentalhealth_app/utils/constants/image_strings.dart';
+import 'package:get/get.dart';
 
-class FirstConversation extends StatelessWidget {
-  const FirstConversation({super.key});
+import '../../../../../utils/constants/sizes.dart';
+
+import 'package:shared_preferences/shared_preferences.dart';
+
+class FirstConversation extends StatefulWidget {
+  @override
+  _FirstConversationState createState() => _FirstConversationState();
+}
+
+class _FirstConversationState extends State<FirstConversation> {
+  final TextEditingController _textEditingController = TextEditingController();
+  bool _showContent = true;
+  List<String> _chatMessages = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _loadMessages(); // Load saved messages when widget is initialized
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: true,
-      body: SingleChildScrollView(
-        child: Column(
+      appBar: AppBar(
+        title: Text('Chat Page'),
+      ),
+      body: Stack(
+        children: [
+          ListView(
+            children: [
+              _showContent
+                  ? _buildContent()
+                  : Container(), // Show content conditionally
+              _buildChatMessages(),
+            ],
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: _buildInputField(),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildContent() {
+    if (_chatMessages.isEmpty) {
+      return Column(
+        children: [
+          SizedBox(height: MhSizes.spaceBetweenSections*1.5),
+          Container(
+            width: 430,
+            height: 350,
+            alignment: Alignment.center,
+            child: Image.asset(
+              MhImages.chatbotpic2,
+              fit: BoxFit.cover,
+            ),
+          ),
+          SizedBox(height: 15),
+          Center(
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 17, vertical: 6.5),
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: MhColors.blue,
+                  width: 1,
+                ),
+                borderRadius: BorderRadius.circular(13),
+              ),
+              child: Text(
+                'Limitations',
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 14.8,
+                  color: MhColors.blue,
+                ),
+              ),
+            ),
+          ),
+          SizedBox(height: 10),
+          Text(
+            'Limited knowledge',
+            style: TextStyle(
+              fontWeight: FontWeight.w700,
+              fontSize: 21.5,
+              color: MhColors.blue,
+            ),
+          ),
+          SizedBox(height: 12),
+          Container(
+            width: MediaQuery.of(context).size.width * 0.8,
+            child: Text(
+              'No human being is perfect. So is chatbots. This chatbot knowledge is limited to 2024.',
+              style: TextStyle(
+                color: MhColors.blue.withOpacity(0.73),
+                fontSize: 16.5,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ],
+      );
+    } else {
+      return Container(); // Return empty container if chat messages are not empty
+    }
+  }
+
+  Widget _buildChatMessages() {
+    // Widget to show chat messages
+    return ListView.builder(
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
+      itemCount: _chatMessages.length,
+      itemBuilder: (context, index) {
+        return ListTile(
+          title: Text(_chatMessages[index]),
+        );
+      },
+    );
+  }
+
+  Widget _buildInputField() {
+    // Widget for input field and send button
+    return Container(
+      decoration: const BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Color.fromARGB(20, 75, 52, 37),
+            spreadRadius: 0,
+            blurRadius: 16,
+            offset: Offset(0, -8), // changes position of shadow
+          ),
+        ],
+         borderRadius: BorderRadius.only(
+      topLeft: Radius.circular(23.0), // Top-left corner radius
+      topRight: Radius.circular(23.0), // Top-right corner radius
+    ),
+        color: MhColors.white,
+      ),
+      child: Padding(
+        padding: EdgeInsets.only(
+          top: 15,
+          bottom:15,
+          left: 10,
+          right:10,
+        ),
+        child: Row(
           children: [
-            Container(
-              decoration: const BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: Color.fromARGB(20, 0, 0, 0),
-                    spreadRadius: 0,
-                    blurRadius: 15,
-                    offset: Offset(0, -29), // changes position of shadow
-                  ),
-                ],
-              ),
-              child: SizedBox(
-                height: 166,
-                child: Stack(
-                  alignment: Alignment.topCenter,
-                  children: [
-                    Positioned(
-                      top: 1,
-                      child: ClipRRect(
-                        borderRadius: const BorderRadius.only(
-                          bottomLeft: Radius.circular(32.5),
-                          bottomRight: Radius.circular(32.5),
-                        ),
-                        child: Container(
-                          width: 415,
-                          height: 125,
-                          color: MhColors.white,
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      left: 10,
-                      top: 50,
-                      child: IconButton(
-                        color: MhColors.blue,
-                        icon: Icon(Icons.arrow_back_ios_new),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                      ),
-                    ),
-                    const Positioned(
-                      left: 63,
-                      top: 60,
-                      child: Text(
-                        'Mindful IA Chatbot',
-                        style: TextStyle(
-                          fontSize: 21,
-                          fontWeight: FontWeight.w700,
-                          color: MhColors.blue,
-                        ),
-                      ),
-                    )
-                  ],
+            Expanded(
+              child: TextField(
+                controller: _textEditingController,
+                decoration: InputDecoration(
+                  hintText: 'Type your message...',
+                  filled: true,
+                  fillColor: MhColors.light,
+                  contentPadding:
+                      EdgeInsets.symmetric(vertical: 15.0, horizontal: 15.0),
+                  hintStyle: TextStyle(color: Colors.grey[400]),
                 ),
               ),
             ),
-
-            const SizedBox(height: 10), // Ajouter une hauteur de séparation
-            Container(
-              width: 430,
-              height: 350,
-              alignment: Alignment.center,
-              child: Image.asset(
-                width: 360,
-                MhImages.chatbotpic2,
-                fit: BoxFit.cover,
-              ),
+            SizedBox(
+              width: MhSizes.spaceBetweenItems,
             ),
-            const SizedBox(height: 15),
-            Center(
-              child: Container(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 17,
-                    vertical: 6.5), // Espacement interne pour le texte
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: MhColors.blue, // Couleur de la bordure
-                    width: 1, // Épaisseur de la bordure
-                  ),
-                  borderRadius:
-                      BorderRadius.circular(13), // Coins arrondis du rectangle
+            MhCircleContainer(
+              width: 50,
+              height: 50,
+              radius: 50,
+              backgroundColor: MhColors.orange,
+              child: IconButton(
+                icon: Icon(
+                  Icons.send,
+                  color: MhColors.white,
                 ),
-                child: const Text(
-                  'Limitations',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 14.8, // Taille de police
-                    color: MhColors.blue, // Couleur du texte
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 10),
-            const Text(
-              'Limited knowledge',
-              style: TextStyle(
-                fontWeight: FontWeight.w700,
-                fontSize: 21.5, // Taille de police
-                color: MhColors.blue, // Couleur du texte
-              ),
-            ),
-            const SizedBox(height: 12),
-            Text(
-              'No human being is perfect. So is ',
-              style: TextStyle(
-                color: MhColors.blue.withOpacity(0.73),
-                fontSize: 16.5,
-              ),
-            ),
-            Text(
-              'chatbots. This chatbot knowledge is ',
-              style: TextStyle(
-                color: MhColors.blue.withOpacity(0.73),
-                fontSize: 16.5,
-              ),
-            ),
-            Text(
-              'limited to 2024. ',
-              style: TextStyle(
-                color: MhColors.blue.withOpacity(0.73),
-                fontSize: 16.5,
-              ),
-            ),
-
-            Container(
-              decoration: const BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: Color.fromARGB(20, 0, 0, 0),
-                    spreadRadius: 0,
-                    blurRadius: 15,
-                    offset: Offset(0, 80), // changes position of shadow
-                  ),
-                ],
-              ),
-              child: SizedBox(
-                height: 170,
-                child: Stack(
-                  alignment: Alignment.topCenter,
-                  children: [
-                    Positioned(
-                      top: 70,
-                      child: ClipRRect(
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(43),
-                          topRight: Radius.circular(43),
-                        ),
-                        child: Container(
-                          width: 420,
-                          height: 180,
-                          color: MhColors.white,
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      left: 21,
-                      top: 100,
-                      child: SizedBox(
-                        height: 48,
-                        child: Container(
-                          width: 302, // Largeur fixe du champ de texte
-                          decoration: BoxDecoration(
-                            color: Colors.grey[100],
-                            borderRadius: BorderRadius.circular(
-                                26), // Coins arrondis du rectangle
-                          ),
-                          child: TextFormField(
-                            decoration: InputDecoration(
-                              labelStyle: const TextStyle(
-                                  color: MhColors.grey, fontSize: 16),
-                              filled: true, // Permet de remplir l'arrière-plan
-                              fillColor: Colors.grey[100],
-                              contentPadding:
-                                  const EdgeInsets.symmetric(horizontal: 20),
-                              labelText: "Tap to start chatting...",
-                              border: InputBorder.none,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      left: 345,
-                      top: 99,
-                      child: IconButton(
-                        style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all<Color>(
-                                MhColors.orange)),
-                        iconSize: 26,
-                        color: MhColors.white,
-                        icon: const Icon(Icons.arrow_right_alt_rounded),
-                        onPressed: () => Get.to(() => const RecentChats()),
-                      ),
-                    ),
-                  ],
-                ),
+                onPressed: () {
+                  _sendMessage(_textEditingController.text);
+                },
               ),
             ),
           ],
         ),
       ),
     );
+  }
+
+  void _sendMessage(String message) {
+    setState(() {
+      _chatMessages.add(message);
+    });
+    _saveMessages(); // Save the messages
+    _textEditingController.clear();
+    _showContent = true; // Show content after sending the message
+  }
+
+  // Load saved messages from SharedPreferences
+  Future<void> _loadMessages() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _chatMessages = prefs.getStringList('chat_messages') ?? [];
+    });
+  }
+
+  // Save messages to SharedPreferences
+  Future<void> _saveMessages() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setStringList('chat_messages', _chatMessages);
   }
 }

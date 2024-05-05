@@ -5,6 +5,11 @@ class MhImages {
   static const String iconVal = "assets/icons/eval.png";
   static const String iconEval = "assets/icons/eval-icon.png";
 
+  //-- Contacts
+  static const String student = "assets/images/contacts_images/student.gif";
+  static const String doctors = "assets/images/contacts_images/doctors.png";
+  static const String cell = "assets/images/contacts_images/listening_cell.png";
+
   //-- Onboarding
   static const String support ="assets/images/onboarding_images/support.png";
   static const String evaluation = "assets/images/onboarding_images/evaluation.png";

@@ -16,33 +16,20 @@ class WelcomePage extends StatelessWidget {
           padding: const EdgeInsets.all(37),
           child: Column(
             children: [
-              const SizedBox(height: MhSizes.lg),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text(
-                    "Mindful AI Chatbot",
-                    style: TextStyle(
-                      color: MhColors.blue,
-                      fontSize: 21,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                ],
-              ),
+              const SizedBox(height: MhSizes.spaceBetweenItems),
+              
               const SizedBox(height: 57), // Ajouter une hauteur de séparation
               Container(
-                width: 400,
+                width: 450,
                 height: 350,
                 alignment: Alignment.center,
                 child: Image.asset(
-                  width: 390,
-                  height: 330,
+                  
                   MhImages.chatbotpic1,
                   fit: BoxFit.cover,
                 ),
               ),
-              const SizedBox(height: MhSizes.xl),
+              const SizedBox(height: MhSizes.spaceBetweenItems),
               const Text(
                 "Talk To AI Chatbot",
                 style: TextStyle(
@@ -51,24 +38,22 @@ class WelcomePage extends StatelessWidget {
                   fontWeight: FontWeight.w700,
                 ),
               ),
-              const SizedBox(height: MhSizes.lg),
-              Text(
-                "     You have no AI conversations. Get your",
-                style: TextStyle(
-                  color: MhColors.blue.withOpacity(0.72),
-                  fontSize: 16.5,
+              const SizedBox(height: MhSizes.spaceBetweenItems /2),
+              Container(
+                width: MediaQuery.of(Get.context!).size.width*0.8,
+                child: Text(
+                  "You have no AI conversations. Get your mind healthy by starting a new one.",
+                  style: TextStyle(
+                    color: MhColors.blue.withOpacity(0.72),
+                    fontSize: 16.5,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
               ),
-              Text(
-                "       mind healthy by starting a new one.",
-                style: TextStyle(
-                  color: MhColors.blue.withOpacity(0.72),
-                  fontSize: 16.5,
-                ),
-              ),
-              const SizedBox(height: 33),
+              
+              const SizedBox(height: MhSizes.spaceBetweenSections * 1.25),
               ElevatedButton(
-                  onPressed: () => Get.to(() => const FirstConversation()),
+                  onPressed: () => Get.to(() => FirstConversation()),
                   style: ButtonStyle(
                       backgroundColor:
                           MaterialStateProperty.all<Color>(MhColors.orange)),

@@ -8,6 +8,8 @@ import 'package:mentalhealth_app/features/personalization/views/profile/profile.
 import 'package:mentalhealth_app/utils/constants/colors.dart';
 import 'package:mentalhealth_app/utils/helpers/helper_functions.dart';
 
+import 'features/personalization/views/contact/contacts.dart';
+
 class NavigationMenu extends StatelessWidget {
   const NavigationMenu({super.key});
 
@@ -57,9 +59,10 @@ class NavigationController extends GetxController {
   final Rx<int> selectedIndex = 0.obs;
 
   final screens = [
-    Container(color: Colors.purple),
+    ContactPage(),
     const EvaluationMain(),
     const WelcomePage(),
-    Container(color: Colors.purple),
+    const UserProfile(),
   ];
 }
+
