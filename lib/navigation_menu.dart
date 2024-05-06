@@ -3,10 +3,12 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:mentalhealth_app/features/evaluation/views/evaluation_main/main_page.dart';
 import 'package:mentalhealth_app/features/personalization/views/profile/profile.dart';
-import 'package:mentalhealth_app/features/chat/views/conversations/recent_chats/recent_chats.dart';
+
 
 import 'package:mentalhealth_app/utils/constants/colors.dart';
 import 'package:mentalhealth_app/utils/helpers/helper_functions.dart';
+
+import 'features/chat/views/conversations/chatting_page/chatting_page.dart';
 
 class NavigationMenu extends StatelessWidget {
   const NavigationMenu({super.key});
@@ -59,7 +61,7 @@ class NavigationController extends GetxController {
   final screens = [
     const UserProfile(),
     const EvaluationMain(),
-    const ChatScreen(),
+    ChatScreen(),
     Container(color: Colors.purple),
   ];
 }
