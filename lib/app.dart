@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mentalhealth_app/bindings/general_bindings.dart';
 import 'package:mentalhealth_app/utils/constants/colors.dart';
 import 'package:mentalhealth_app/utils/theme/theme.dart';
 import 'package:get/get.dart';
@@ -17,8 +18,8 @@ class App extends StatelessWidget {
       themeMode: ThemeMode.system,
       theme: MentalHAppTheme.lightTheme,
       darkTheme: MentalHAppTheme.darkTheme,
-      home: const IntroductionAnimationScreen(),
-      //home: const Scaffold(backgroundColor: MhColors.green, body: Center(child: CircularProgressIndicator(color: MhColors.white,),),),
+      initialBinding: GeneralBindings(),
+      home: const Scaffold(backgroundColor: MhColors.green, body: Center(child: CircularProgressIndicator(color: MhColors.white,),),),
     );
   }
 }

@@ -101,7 +101,7 @@ class _IntroductionAnimationScreenState
     }
   }
 
-  final storage = GetStorage();
+  
 
   void _onNextClick() {
     if (_animationController!.value >= 0 &&
@@ -122,7 +122,7 @@ class _IntroductionAnimationScreenState
         print(storage.read('isFirstTime2'));
       }
 
-      storage.write('isFirstTime2', false);
+      
 
       if (kDebugMode) {
         print('============= GET STORAGE Next Button =============');
@@ -134,6 +134,8 @@ class _IntroductionAnimationScreenState
   }
 
   void _signUpClick() {
+    final storage = GetStorage();
+    storage.write('isFirstTime4', false);
     Get.to(const SignupScreen());
   }
 }
