@@ -13,32 +13,30 @@ class MhFullScreenLoader {
   /// Parameters:
   ///  - text: The text to be displayed in the loading dialog
   ///  - animation: The lottie animation to be shown
-static void openLoadingDialog(String text, String animation) {
-  showDialog(
-    context: Get.overlayContext!,
-    barrierDismissible: false,
-    builder: (_) => PopScope(
-      canPop: false,
-      child: Container(
-        color: MhHelperFunctions.isDarkMode(Get.context!)
-            ? MhColors.dark
-            : MhColors.white,
-        width: double.infinity,
-        height: double.infinity,
-        child: SingleChildScrollView( // Wrap the Column with SingleChildScrollView
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(height: 250),
-              MhAnimationLoaderWidget(text: text, animation: animation),
-            ],
-          ),
-        ),
-      ),
-    ),
-  );
-}
-
+  static void openLoadingDialog(String text, String animation) {
+    showDialog(
+        context: Get.overlayContext!,
+        // Overlay dialogs
+        barrierDismissible: false,
+        // The dialog can't be dismissed by tapping outside it
+        builder: (_) => PopScope(
+            canPop: false, // Disable popping with the back button
+            child: Container(
+              color: MhHelperFunctions.isDarkMode(Get.context!)
+                  ? MhColors.dark
+                  : MhColors.white,
+              width: double.infinity,
+              height: double.infinity,
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 250,
+                  ),
+                  MhAnimationLoaderWidget(text: text, animation: animation)
+                ],
+              ),
+            )));
+  }
 
   /// Stop The currently open loading dialog
   /// This method doesn't return anything

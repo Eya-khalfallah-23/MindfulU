@@ -2,16 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:mentalhealth_app/navigation_menu.dart';
+import 'package:mentalhealth_app/utils/validators/validation.dart';
 
 import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/constants/text_strings.dart';
+import '../../../controllers/login/login_controller.dart';
 
 class MhLoginForm extends StatelessWidget {
   const MhLoginForm({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(LoginController());
+
     return Form(
+      //key: controller.loginFormKey,
         child: Padding(
       padding: const EdgeInsets.symmetric(
           vertical: MhSizes.spaceBetweenSections,
@@ -26,6 +31,8 @@ class MhLoginForm extends StatelessWidget {
           SizedBox(
             height: 55,
             child: TextFormField(
+              controller: controller.email,
+              validator: (value) => MhValidator.validateEmail(value),
               decoration: const InputDecoration(
                   prefixIcon: Icon(Iconsax.direct_right),
                   labelText: MhTexts.email),
@@ -38,11 +45,19 @@ class MhLoginForm extends StatelessWidget {
           const SizedBox(height: MhSizes.sm),
           SizedBox(
             height: 55,
-            child: TextFormField(
-              decoration: const InputDecoration(
-                prefixIcon: Icon(Iconsax.password_check),
-                labelText: MhTexts.passwordHint,
-                suffixIcon: Icon(Iconsax.eye_slash),
+            child: Obx(
+              () => TextFormField(
+                controller: controller.password,
+                validator: (value) => MhValidator.validateEmptyText(MhTexts.password, value),
+                obscureText: controller.hidePassword.value,
+                decoration: InputDecoration(
+                  prefixIcon: const Icon(Iconsax.password_check),
+                  labelText: MhTexts.passwordHint,
+                  suffixIcon: IconButton(
+                    onPressed: () => controller.hidePassword.value = !controller.hidePassword.value,
+                    icon:Icon( controller.hidePassword.value ? Iconsax.eye_slash : Iconsax.eye),
+                  ),
+                ),
               ),
             ),
           ),
@@ -55,7 +70,7 @@ class MhLoginForm extends StatelessWidget {
               SizedBox(
                   width: 24,
                   height: 24,
-                  child: Checkbox(value: true, onChanged: (value) {})),
+                  child: Obx(() => Checkbox(value: controller.rememberMe.value, onChanged: (value) => controller.rememberMe.value = !controller.rememberMe.value))),
               const Text(MhTexts.rememberMe),
             ]),
           ]),
@@ -66,16 +81,16 @@ class MhLoginForm extends StatelessWidget {
               width: double.infinity,
               decoration: const BoxDecoration(
                 boxShadow: [
-                  BoxShadow( 
+                  BoxShadow(
                     color: Color.fromARGB(20, 0, 0, 0),
-                    spreadRadius:0,
+                    spreadRadius: 0,
                     blurRadius: 16,
                     offset: Offset(0, 8), // changes position of shadow
                   ),
                 ],
               ),
               child: ElevatedButton(
-                  onPressed: () => Get.to(() => const NavigationMenu()),
+                  onPressed: () => controller.emailAndPasswordSignIn(),
                   child: const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

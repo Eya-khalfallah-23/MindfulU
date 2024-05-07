@@ -33,7 +33,7 @@ class MhAnimationLoaderWidget extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Lottie.asset(animation,
+          Image.asset(animation,
               width: MediaQuery.of(context).size.width * 0.8),
           const SizedBox(
             height: MhSizes.defaultSpace,

@@ -27,7 +27,7 @@ class SignupController extends GetxController {
     try {
       // start loading
       MhFullScreenLoader.openLoadingDialog(
-          'We are processing your information...', MhImages.calm);
+          'We are processing your information...', MhImages.loadingScreen);
 
       // Check Internet Connectivity
       final isConnected = await NetworkManager.instance.isConnected();
@@ -76,8 +76,8 @@ class SignupController extends GetxController {
           message: 'Your account has been created! Verify Email to continue.');
 
        // Move to Verify Email Screen
-      Get.to(() => const VerifyEmailScreen(
-           // email: email.text.trim(),
+      Get.to(() => VerifyEmailScreen(
+           email: email.text.trim(),
           )); 
     } catch (e) {
       // Remove Loader

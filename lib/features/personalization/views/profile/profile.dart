@@ -4,6 +4,7 @@ import 'package:mentalhealth_app/common/widgets/custom_shapes/containers/circle_
 import 'package:mentalhealth_app/features/personalization/views/profile_setup/profile_setup.dart';
 import 'package:mentalhealth_app/utils/constants/colors.dart';
 
+import '../../../../data/repositories/auth/auth_repository.dart';
 import '../../../../utils/constants/image_strings.dart';
 import '../../../../utils/constants/sizes.dart';
 
@@ -168,6 +169,24 @@ class ProfileHeader extends StatelessWidget {
                 child: Icon(
                   Icons.settings,
                   color: MhColors.blue,
+                  size: 30,
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            top: 60,
+            left: 20,
+            child: GestureDetector(
+              onTap: () => AuthenticationRepository.instance.logout(),
+              child: const MhCircleContainer(
+                width: 30,
+                height: 30,
+                radius: 30,
+                backgroundColor: Colors.transparent,
+                child: Icon(
+                  Icons.logout_rounded,
+                  color: MhColors.white,
                   size: 30,
                 ),
               ),

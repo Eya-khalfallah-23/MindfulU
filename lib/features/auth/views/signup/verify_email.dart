@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:mentalhealth_app/data/repositories/auth/auth_repository.dart';
+import 'package:mentalhealth_app/features/auth/controllers/sign_up/verify_email_controller.dart';
 
 import '../../../../utils/constants/image_strings.dart';
 import '../../../../utils/constants/sizes.dart';
@@ -10,16 +12,20 @@ import '../login/login.dart';
 import '../../../../common/widgets/success_screen/success_screen.dart';
 
 class VerifyEmailScreen extends StatelessWidget {
-  const VerifyEmailScreen({super.key});
+  const VerifyEmailScreen({super.key, this.email});
+
+  final String? email;
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(VerifyEmailController());
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
-              onPressed: () => Get.offAll(() => const LoginScreen()),
+              onPressed: () => AuthenticationRepository.instance.logout(),
               icon: const Icon(CupertinoIcons.clear))
         ],
       ),
@@ -44,7 +50,7 @@ class VerifyEmailScreen extends StatelessWidget {
                   style: Theme.of(context).textTheme.headlineMedium,
                   textAlign: TextAlign.center),
               const SizedBox(height: MhSizes.spaceBetweenItems),
-              Text('sakata.gintoki23@gmail.com',
+              Text(email ?? '',
                   style: Theme.of(context).textTheme.labelLarge,
                   textAlign: TextAlign.center),
               const SizedBox(height: MhSizes.spaceBetweenItems),
@@ -57,18 +63,13 @@ class VerifyEmailScreen extends StatelessWidget {
               SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                      onPressed: () => Get.to(() =>  SuccessScreen(
-                            image: MhImages.verifiedEmail,
-                            title: MhTexts.yourAccountCreatedTitle,
-                            subTitle: MhTexts.yourEmailCreatedSubtitle,
-                            onPressed: () => Get.to(() => const LoginScreen()),
-                          )),
+                      onPressed: () => controller.checkEmailVerificationStatus(),
                       child: const Text(MhTexts.tContinue))),
               const SizedBox(height: MhSizes.spaceBetweenItems),
               SizedBox(
                   width: double.infinity,
                   child: TextButton(
-                      onPressed: () {},
+                      onPressed: () => controller.sendEmailVerification() ,
                       child: const Text(MhTexts.resendEmail))),
             ],
           ),

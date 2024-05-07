@@ -27,6 +27,9 @@ class MhImages {
 
   static const String verifiedEmail =
       "assets/images/animations/success-verify.gif";
+  static const String loadingScreen =
+      "assets/images/animations/loading.gif";
+
 
   static const String profilePic = "assets/images/profile.jpg";
   static const String chatbotpic1 = "assets/images/Frame.png";
