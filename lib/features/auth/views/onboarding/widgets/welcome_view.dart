@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../utils/constants/colors.dart';
+import '../../../../../utils/constants/image_strings.dart';
 
 class WelcomeView extends StatelessWidget {
   final AnimationController animationController;
@@ -66,7 +67,7 @@ class WelcomeView extends StatelessWidget {
                 child: Container(
                   constraints: const BoxConstraints(maxWidth: 350, maxHeight: 350),
                   child: Image.asset(
-                    'assets/images/moods/mood-joy.png',
+                    MhImages.appLogo,
                     fit: BoxFit.contain,
                   ),
                 ),

@@ -11,9 +11,10 @@ class MhImages {
   static const String cell = "assets/images/contacts_images/listening_cell.png";
 
   //-- Onboarding
-  static const String support ="assets/images/onboarding_images/support.png";
-  static const String evaluation = "assets/images/onboarding_images/evaluation.png";
-  static const String chatbot ="assets/images/onboarding_images/chatbot.png";
+  static const String support ="assets/images/animations/support.png";
+  static const String evaluation = "assets/images/animations/evaluation.png";
+  static const String chatbot ="assets/images/animations/chatbot.png";
+  static const String welcome ="assets/images/animations/welcome.png";
 
   //-- Moods
   static const String happy = "assets/images/moods/mood-joy.png";

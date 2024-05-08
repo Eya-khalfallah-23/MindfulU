@@ -31,9 +31,9 @@ class _SplashViewState extends State<SplashView> {
         child: Column(
           children: [
             SizedBox(
-              width: MediaQuery.of(context).size.width,
+              width:  300,
               child: Image.asset(
-                MhImages.happy,
+                MhImages.welcome,
                 fit: BoxFit.cover,
               ),
             ),

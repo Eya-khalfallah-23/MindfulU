@@ -4,6 +4,7 @@ import 'package:mentalhealth_app/utils/constants/colors.dart';
 import 'package:mentalhealth_app/utils/constants/image_strings.dart';
 import 'package:get/get.dart';
 
+import '../../../../../common/widgets/appbar/custom_appbar.dart';
 import '../../../../../utils/constants/sizes.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
@@ -27,19 +28,17 @@ class _FirstConversationState extends State<FirstConversation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Chat Page'),
+      appBar: CustomAppBar(
+        title: Text('Chat Page', style: TextStyle(color: MhColors.blue),),
       ),
       body: Stack(
         children: [
-          ListView(
-            children: [
-              _showContent
-                  ? _buildContent()
-                  : Container(), // Show content conditionally
-              _buildChatMessages(),
-            ],
-          ),
+          
+              
+                   _buildContent()
+                  
+            
+          ,
           Align(
             alignment: Alignment.bottomCenter,
             child: _buildInputField(),
@@ -50,7 +49,7 @@ class _FirstConversationState extends State<FirstConversation> {
   }
 
   Widget _buildContent() {
-    if (_chatMessages.isEmpty) {
+    
       return Column(
         children: [
           SizedBox(height: MhSizes.spaceBetweenSections*1.5),
@@ -107,9 +106,7 @@ class _FirstConversationState extends State<FirstConversation> {
           ),
         ],
       );
-    } else {
-      return Container(); // Return empty container if chat messages are not empty
-    }
+    
   }
 
   Widget _buildChatMessages() {

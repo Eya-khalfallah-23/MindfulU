@@ -7,6 +7,8 @@ import 'package:mentalhealth_app/utils/constants/colors.dart';
 import 'package:mentalhealth_app/utils/constants/image_strings.dart';
 import 'package:mentalhealth_app/utils/constants/sizes.dart';
 
+import '../chatting_page/chatting_page.dart';
+
 class RecentChats extends StatelessWidget {
   const RecentChats({super.key});
 
@@ -26,7 +28,7 @@ class RecentChats extends StatelessWidget {
         ),
         child: ClipOval(
           child: FloatingActionButton(
-            onPressed: () => Get.to(FirstConversation()),
+            onPressed: () => Get.to(ChatScreen()),
             backgroundColor: MhColors.blue,
             child: Icon(
               FontAwesomeIcons.plus,
@@ -108,8 +110,8 @@ class RecentChats extends StatelessWidget {
                     width:
                         300, // Largeur personnalisée pour l'élément Historique
                     child: Historique(
-                      date: DateTime.utc(2024, 4, 15),
-                      hstate: 'Recent Breakup. Felt sad and..',
+                      date: DateTime.utc(2024, 5, 8),
+                      hstate: "Demande d'aide pour la dépression",
                       nbMsg: 80,
                     ),
                   ),
@@ -121,8 +123,8 @@ class RecentChats extends StatelessWidget {
                     width:
                         300, // Largeur personnalisée pour l'élément Historique
                     child: Historique(
-                      date: DateTime.utc(2024, 3, 23),
-                      hstate: 'Recent Breakup. Felt sad and..',
+                      date: DateTime.utc(2024, 5, 8),
+                      hstate: 'Questions sur la santé mentale',
                       nbMsg: 55,
                     ),
                   ),
@@ -134,9 +136,22 @@ class RecentChats extends StatelessWidget {
                     width:
                         300, // Largeur personnalisée pour l'élément Historique
                     child: Historique(
-                      date: DateTime.utc(2024, 2, 7),
-                      hstate: 'Recent Breakup. Felt sad and..',
-                      nbMsg: 100,
+                      date: DateTime.utc(2024, 5, 5),
+                      hstate: "Partage d'expérience sur l'anxiété",
+                      nbMsg: 34,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: MhSizes.defaultSpace),
+                SizedBox(
+                  width: double.infinity,
+                  child: Container(
+                    width:
+                        300, // Largeur personnalisée pour l'élément Historique
+                    child: Historique(
+                      date: DateTime.utc(2024, 5, 1),
+                      hstate: "Conseils pour gérer le stress",
+                      nbMsg: 23,
                     ),
                   ),
                 ),
@@ -149,7 +164,7 @@ class RecentChats extends StatelessWidget {
                     child: Historique(
                       date: DateTime.utc(2024, 2, 7),
                       hstate: 'Recent Breakup. Felt sad and..',
-                      nbMsg: 100,
+                      nbMsg: 12,
                     ),
                   ),
                 ),
@@ -161,21 +176,8 @@ class RecentChats extends StatelessWidget {
                         300, // Largeur personnalisée pour l'élément Historique
                     child: Historique(
                       date: DateTime.utc(2024, 2, 7),
-                      hstate: 'Recent Breakup. Felt sad and..',
-                      nbMsg: 100,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: MhSizes.defaultSpace),
-                SizedBox(
-                  width: double.infinity,
-                  child: Container(
-                    width:
-                        300, // Largeur personnalisée pour l'élément Historique
-                    child: Historique(
-                      date: DateTime.utc(2024, 2, 7),
-                      hstate: 'Recent Breakup. Felt sad and..',
-                      nbMsg: 100,
+                      hstate: "Parler de l'estime de soi",
+                      nbMsg: 30,
                     ),
                   ),
                 ),

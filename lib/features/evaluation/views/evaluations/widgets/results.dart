@@ -132,11 +132,11 @@ Color _getPSSBackgroundColor(int score) {
 
 String _getPSSTextResult(int score) {
   if (score >= 0 && score <= 13) {
-    return "low stress";
+    return "Low stress";
   } else if (score >= 14 && score <= 26) {
-    return "moderate stress";
+    return "Moderate stress";
   } else {
-    return "high perceived stress";
+    return "High perceived stress";
   }
 }
 

@@ -103,7 +103,7 @@ class MoodDiaryVew extends StatelessWidget {
                 child: SlideTransition(
                   position: imageSecondHalfAnimation,
                   child: Container(
-                    constraints: const BoxConstraints(maxWidth: 350, maxHeight: 250),
+                    constraints: const BoxConstraints(maxWidth: 300, maxHeight: 200),
                     child: Image.asset(
                       MhImages.chatbot,
                       fit: BoxFit.contain,

@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
+import '../../../../../common/widgets/appbar/custom_appbar.dart';
 import '../../../../../common/widgets/custom_shapes/containers/circle_container.dart';
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/sizes.dart'; // Importez la classe DateFormat
@@ -68,7 +69,7 @@ class _ChatScreenState extends State<ChatScreen> {
     // Envoi du message au serveur rasa
     final response = await http.post(
       Uri.parse(
-          'https://f17b-197-9-74-236.ngrok-free.app/webhooks/rest/webhook'),
+          'https://4475-197-9-74-236.ngrok-free.app/webhooks/rest/webhook'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -119,6 +120,12 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: CustomAppBar(
+        title: Text(
+          'Chat Page',
+          style: TextStyle(color: MhColors.blue),
+        ),
+      ),
       body: Container(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -147,63 +154,62 @@ class _ChatScreenState extends State<ChatScreen> {
             ),
 // Input de l'utilisateur
             Container(
-      decoration: const BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: Color.fromARGB(20, 75, 52, 37),
-            spreadRadius: 0,
-            blurRadius: 16,
-            offset: Offset(0, -8), // changes position of shadow
-          ),
-        ],
-         borderRadius: BorderRadius.only(
-      topLeft: Radius.circular(23.0), // Top-left corner radius
-      topRight: Radius.circular(23.0), // Top-right corner radius
-    ),
-        color: MhColors.white,
-      ),
-      child: Padding(
-        padding: EdgeInsets.only(
-          top: 15,
-          bottom:15,
-          left: 10,
-          right:10,
-        ),
-        child: Row(
-          children: [
-            Expanded(
-              child: TextField(
-                controller: _userInput,
-                decoration: InputDecoration(
-                  hintText: 'Type your message...',
-                  filled: true,
-                  fillColor: MhColors.light,
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 15.0, horizontal: 15.0),
-                  hintStyle: TextStyle(color: Colors.grey[400]),
+              decoration: const BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Color.fromARGB(20, 75, 52, 37),
+                    spreadRadius: 0,
+                    blurRadius: 16,
+                    offset: Offset(0, -8), // changes position of shadow
+                  ),
+                ],
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(23.0), // Top-left corner radius
+                  topRight: Radius.circular(23.0), // Top-right corner radius
+                ),
+                color: MhColors.white,
+              ),
+              child: Padding(
+                padding: EdgeInsets.only(
+                  top: 15,
+                  bottom: 15,
+                  left: 10,
+                  right: 10,
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: TextField(
+                        controller: _userInput,
+                        decoration: InputDecoration(
+                          hintText: 'Type your message...',
+                          filled: true,
+                          fillColor: MhColors.light,
+                          contentPadding: EdgeInsets.symmetric(
+                              vertical: 15.0, horizontal: 15.0),
+                          hintStyle: TextStyle(color: Colors.grey[400]),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: MhSizes.spaceBetweenItems,
+                    ),
+                    MhCircleContainer(
+                      width: 50,
+                      height: 50,
+                      radius: 50,
+                      backgroundColor: MhColors.orange,
+                      child: IconButton(
+                          icon: Icon(
+                            Icons.send,
+                            color: MhColors.white,
+                          ),
+                          onPressed: sendMessage),
+                    ),
+                  ],
                 ),
               ),
             ),
-            SizedBox(
-              width: MhSizes.spaceBetweenItems,
-            ),
-            MhCircleContainer(
-              width: 50,
-              height: 50,
-              radius: 50,
-              backgroundColor: MhColors.orange,
-              child: IconButton(
-                icon: Icon(
-                  Icons.send,
-                  color: MhColors.white,
-                ),
-                onPressed: sendMessage
-              ),
-            ),
-          ],
-        ),
-      ),
-    ),
           ],
         ),
       ),
@@ -333,8 +339,7 @@ class Messages extends StatelessWidget {
               "/$buttonTitle"); // Remplacez par l'envoi du message à Rasa
         },
         style: ButtonStyle(
-          backgroundColor:
-              MaterialStateProperty.all(MhColors.orange),
+          backgroundColor: MaterialStateProperty.all(MhColors.orange),
           textStyle: MaterialStateProperty.all(
               TextStyle(fontSize: 25, color: Colors.white)),
           alignment: Alignment.center,

@@ -104,14 +104,14 @@ class _MoodSelectionScreenState extends State<MoodSelectionScreen> {
       title: Text(text, style: TextStyle(color: MhColors.darkerGrey),),
       onTap: () {
         Navigator.of(context).pop();
-        if (text == 'GAD-7') {
+        if (text == 'Generalized Anxiety Disorder 7-item Scale(GAD-7)') {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
               builder: (context) => TestAPage(userMood: userMood),
             ),
           );
-        } else if (text == 'PHQ-9') {
+        } else if (text == 'Patient Health Questionnaire-9(PHQ-9)') {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
