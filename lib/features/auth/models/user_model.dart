@@ -16,13 +16,9 @@ class UserModel {
     required this.profilePicture,
   });
 
- /// Static function to create an empty user model
+  /// Static function to create an empty user model
   static UserModel empty() => UserModel(
-      id: '',
-      userName: '',
-      email: '',
-      school: '',
-      profilePicture: '');
+      id: '', userName: '', email: '', school: '', profilePicture: '');
 
   /// Convert model to JSON structure for storing data in Firebase
   Map<String, dynamic> toJson() {
@@ -36,14 +32,16 @@ class UserModel {
 
   factory UserModel.fromSnapshot(
       DocumentSnapshot<Map<String, dynamic>> document) {
-    //if (document.data() != null) {
-    final data = document.data()!;
-    return UserModel(
-        id: document.id,
-        userName: data['Username'] ?? '',
-        email: data['Email'] ?? '',
-        school: data['School'] ?? '',
-        profilePicture: data['ProfilePicture'] ?? '');
-    //}
+    if (document.data() != null) {
+      final data = document.data()!;
+      return UserModel(
+          id: document.id,
+          userName: data['Username'] ?? '',
+          email: data['Email'] ?? '',
+          school: data['School'] ?? '',
+          profilePicture: data['ProfilePicture'] ?? '');
+    } else {
+      return UserModel.empty();
+    }
   }
 }

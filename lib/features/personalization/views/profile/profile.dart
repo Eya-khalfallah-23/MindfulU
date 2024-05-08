@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:mentalhealth_app/common/widgets/custom_shapes/containers/circle_container.dart';
+import 'package:mentalhealth_app/features/personalization/controllers/user_controller.dart';
 import 'package:mentalhealth_app/features/personalization/views/profile_setup/profile_setup.dart';
 import 'package:mentalhealth_app/utils/constants/colors.dart';
 
@@ -13,28 +16,31 @@ class UserProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(UserController());
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
             const ProfileHeader(),
-            const Text('Sakata Gintoki',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.w600,
-                  color: MhColors.blue,
-                )),
-            const Text('ENSI',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w500,
-                  color: MhColors.blue,
-                )),
-
+            Obx(
+              () => Text(controller.user.value.userName,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.w600,
+                    color: MhColors.blue,
+                  )),
+            ),
+            Obx(
+              () => Text(controller.user.value.school,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w500,
+                    color: MhColors.blue,
+                  )),
+            ),
             const SizedBox(height: MhSizes.spaceBetweenSections),
-            
             Container(
               width: MediaQuery.of(context).size.width * 0.9,
               height: 70,
@@ -44,7 +50,7 @@ class UserProfile extends StatelessWidget {
                 boxShadow: const [
                   BoxShadow(
                     color: Color.fromARGB(20, 75, 52, 37),
-                    spreadRadius:0,
+                    spreadRadius: 0,
                     blurRadius: 16,
                     offset: Offset(0, 8), // changes position of shadow
                   ),
@@ -52,33 +58,27 @@ class UserProfile extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  Expanded(
-                    child: Container()
-                  ),
+                  Expanded(child: Container()),
                   const FractionallySizedBox(
-                  heightFactor: 0.75, // Height factor set to 80%
-                  child: VerticalDivider(
-                    color: MhColors.blue, // Color of the divider
-                    width: 1, // Width of the divider
-                  ),),
-                  Expanded(
-                    child: Container()
+                    heightFactor: 0.75, // Height factor set to 80%
+                    child: VerticalDivider(
+                      color: MhColors.blue, // Color of the divider
+                      width: 1, // Width of the divider
+                    ),
                   ),
+                  Expanded(child: Container()),
                   const FractionallySizedBox(
-                  heightFactor: 0.75, // Height factor set to 80%
-                  child: VerticalDivider(
-                    color: MhColors.blue, // Color of the divider
-                    width: 1, // Width of the divider
-                  ),),
-                  Expanded(
-                    child: Container()
+                    heightFactor: 0.75, // Height factor set to 80%
+                    child: VerticalDivider(
+                      color: MhColors.blue, // Color of the divider
+                      width: 1, // Width of the divider
+                    ),
                   ),
+                  Expanded(child: Container()),
                 ],
               ),
             ),
-
             const SizedBox(height: MhSizes.spaceBetweenSections),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -86,34 +86,34 @@ class UserProfile extends StatelessWidget {
                   width: 160,
                   height: 180,
                   decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(40),
-                color: MhColors.purple,
-                boxShadow: const [
-                  BoxShadow(
-                    color: Color.fromARGB(20, 75, 52, 37),
-                    spreadRadius:0,
-                    blurRadius: 16,
-                    offset: Offset(0, 8), // changes position of shadow
+                    borderRadius: BorderRadius.circular(40),
+                    color: MhColors.purple,
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Color.fromARGB(20, 75, 52, 37),
+                        spreadRadius: 0,
+                        blurRadius: 16,
+                        offset: Offset(0, 8), // changes position of shadow
+                      ),
+                    ],
                   ),
-                ],
-              ),
                 ),
                 const SizedBox(width: MhSizes.spaceBtwInputFields),
                 Container(
                   width: 160,
                   height: 180,
                   decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(40),
-                color: MhColors.orange,
-                boxShadow: const [
-                  BoxShadow(
-                    color: Color.fromARGB(20, 75, 52, 37),
-                    spreadRadius:0,
-                    blurRadius: 16,
-                    offset: Offset(0, 8), // changes position of shadow
+                    borderRadius: BorderRadius.circular(40),
+                    color: MhColors.orange,
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Color.fromARGB(20, 75, 52, 37),
+                        spreadRadius: 0,
+                        blurRadius: 16,
+                        offset: Offset(0, 8), // changes position of shadow
+                      ),
+                    ],
                   ),
-                ],
-              ),
                 ),
               ],
             )

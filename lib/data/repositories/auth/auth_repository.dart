@@ -21,6 +21,8 @@ class AuthenticationRepository extends GetxController {
   final deviceStorage = GetStorage();
   final _auth = FirebaseAuth.instance;
 
+  /// Get Authenticated User Data
+  User? get authUser => _auth.currentUser;
 
   /// Called from main.dart on app launch
   @override
@@ -30,7 +32,7 @@ class AuthenticationRepository extends GetxController {
   }
 
   /// Function to Show Relevent Screen
- /// Function to show relevant screen
+  /// Function to show relevant screen
   screenRedirect() async {
     final user = _auth.currentUser;
     if (user != null) {
@@ -65,7 +67,7 @@ class AuthenticationRepository extends GetxController {
       String email, String password) async {
     try {
       return await _auth.signInWithEmailAndPassword(
-         email: email, password: password);
+          email: email, password: password);
     } on FirebaseAuthException catch (e) {
       throw MhFirebaseAuthException(e.code).message;
     } on FirebaseException catch (e) {
@@ -85,10 +87,10 @@ class AuthenticationRepository extends GetxController {
     try {
       return await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
-     } on FirebaseAuthException catch (e) {
-       throw MhFirebaseAuthException(e.code).message;
-     } on FirebaseException catch (e) {
-       throw MhFirebaseException(e.code).message;
+    } on FirebaseAuthException catch (e) {
+      throw MhFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw MhFirebaseException(e.code).message;
     } on FormatException catch (_) {
       throw const MhFormatException();
     } on PlatformException catch (e) {
@@ -101,7 +103,7 @@ class AuthenticationRepository extends GetxController {
   /// [EmailAuthentication] - Mail Verification
   Future<void> sendEmailVerification() async {
     try {
-       await _auth.currentUser?.sendEmailVerification();
+      await _auth.currentUser?.sendEmailVerification();
     } on FirebaseAuthException catch (e) {
       throw MhFirebaseAuthException(e.code).message;
     } on FirebaseException catch (e) {
@@ -133,5 +135,5 @@ class AuthenticationRepository extends GetxController {
     } catch (e) {
       throw 'Something went wrong. Please try again!';
     }
-   }
+  }
 }

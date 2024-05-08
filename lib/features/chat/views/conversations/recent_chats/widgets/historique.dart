@@ -81,7 +81,7 @@ class Historique extends StatelessWidget {
                     children: [
                       Text(hstate,
                           style: const TextStyle(
-                            fontSize: 16.2,
+                            fontSize: 16,
                             fontWeight: FontWeight.w600,
                             color: MhColors.blue,
                           )),
@@ -90,12 +90,13 @@ class Historique extends StatelessWidget {
                         children: [
                           const Icon(
                             Icons.chat,
-                            color: Colors.grey,
+                            color: MhColors.orange,
                           ),
                           const SizedBox(width: MhSizes.spaceBetweenItems / 2),
                           Text(
                             "$nbMsg Total",
-                            style: TextStyle(fontSize: 12),
+                            style: TextStyle(fontSize: 12, color: MhColors.orange),
+                            
                           )
                         ],
                       )

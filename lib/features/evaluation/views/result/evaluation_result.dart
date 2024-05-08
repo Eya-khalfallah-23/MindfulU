@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:mentalhealth_app/utils/constants/image_strings.dart';
 import 'package:mentalhealth_app/utils/constants/sizes.dart';
+import 'package:uuid/uuid.dart';
 import '../../../../common/widgets/custom_shapes/containers/circle_container.dart';
+import '../../../../data/repositories/auth/auth_repository.dart';
 import '../../../../utils/constants/colors.dart';
+import '../../controllers/test_controller.dart';
+import '../../models/test_model.dart';
 import '../evaluations/widgets/results.dart';
 
 class ResultPage extends StatefulWidget {
@@ -21,6 +26,16 @@ class ResultPage extends StatefulWidget {
 }
 
 class _ResultPageState extends State<ResultPage> {
+  var testController = Get.put(TestController());
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialize the test controller using GetX's Get.find() method
+    testController = Get.find<TestController>();
+    // Save the test result automatically when the page is first displayed
+    _saveTestResult();
+  }
   
   final Map<String, IconData> moodDictionary = {
     'Happy': FontAwesomeIcons.solidSmile,
@@ -207,5 +222,22 @@ class _ResultPageState extends State<ResultPage> {
         ),
       ),
     );
+  }
+  void _saveTestResult() {
+    // Create a TestModel instance with the test data
+    var uuid = const Uuid().v4();
+    TestModel testModel = TestModel(
+      id: uuid,
+      testResult: getTextResult(widget.testName, widget.totalScore),
+      testName: widget.testName,
+      score: widget.totalScore,
+      mood: widget.userMood,
+      date: DateTime.now(),
+      nbsug: getNbrSugg(widget.testName, widget.totalScore),
+      color: '#${getBackgroundColor(widget.testName, widget.totalScore).value.toRadixString(16).substring(2)}',
+    );
+
+    // Call the addTestResult method of the test controller to save the test result
+    testController.addTestResult(testModel);
   }
 }

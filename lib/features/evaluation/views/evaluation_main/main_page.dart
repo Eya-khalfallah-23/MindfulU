@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:mentalhealth_app/common/widgets/custom_shapes/curved_edges/curved_edges.dart';
@@ -7,15 +8,35 @@ import 'package:mentalhealth_app/utils/constants/image_strings.dart';
 import '../../../../common/widgets/custom_shapes/containers/circle_container.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sizes.dart';
+import '../../controllers/test_controller.dart';
 import '../mood_tracker/mood.dart';
 import 'widgets/card_histo.dart';
 
 class EvaluationMain extends StatelessWidget {
-  const EvaluationMain({super.key});
+  EvaluationMain({super.key});
+  
 
+  Color hexToColor(String hexColor) {
+  // Remove the leading '#' character if present
+  if (hexColor.startsWith('#')) {
+    hexColor = hexColor.substring(1);
+  }
+
+  // Parse the hexadecimal color code and return a Color object
+  return Color(int.parse(hexColor, radix: 16) + 0xFF000000);
+}
+
+final Map<String, IconData> moodDictionary = {
+    'Happy': FontAwesomeIcons.solidSmile,
+    'Excited': FontAwesomeIcons.solidLaughSquint,
+    'Sad': FontAwesomeIcons.solidFrownOpen,
+    'Calm': FontAwesomeIcons.solidSmileBeam,
+    'Angry': FontAwesomeIcons.solidAngry
+  };
 
   @override
   Widget build(BuildContext context) {
+    final testcontroller = Get.put(TestController());
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -96,9 +117,8 @@ class EvaluationMain extends StatelessWidget {
                       radius: 60,
                       backgroundColor: MhColors.blue,
                       child: Icon(
-                        Iconsax.add,
-                        color: MhColors.white,
-                        size: 60,
+                        FontAwesomeIcons.plus,                       color: MhColors.white,
+                        size: 35,
                         weight: 100,
                       ),
                     ),
@@ -107,19 +127,39 @@ class EvaluationMain extends StatelessWidget {
               ),
             ]),
 
-            const SizedBox(height: MhSizes.spaceBetweenSections),
-
+            const SizedBox(height: MhSizes.spaceBtwInputFields),
+            Container(
+              width: MediaQuery.of(context).size.width * 0.85,
+              child: Row(
+                children: [
+                  Text('Recents',
+                                style: const TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600,
+                                  color: MhColors.blue,
+                                ), textAlign: TextAlign.left,),
+                ],
+              ),
+            ),
+            const SizedBox(height: MhSizes.spaceBetweenItems),
             /// Cards
-            MhCardHisto(date: DateTime.utc(2024, 3, 23),hstate: 'Healthy',percentage: 80,nbsugg: 3,color: MhColors.green,icon: Icons.emoji_emotions_rounded,mood: 'Overjoyed'),
+            Obx(
+              () => Column(
+                children: testcontroller.testResults.map((test) {
+                  return MhCardHisto(
+                    date: test.date,
+                    hstate: test.testResult,
+                    percentage: test.score,
+                    testName: test.testName,
+                    nbsugg: test.nbsug,
+                    color: hexToColor(test.color),
+                    icon: moodDictionary[test.mood],
+                    mood: test.mood,
+                  );
+                }).toList(),
 
-            const SizedBox(height: MhSizes.spaceBetweenItems),
-
-            MhCardHisto(date: DateTime.utc(2024, 3, 20),hstate: 'Mild Anxiety',percentage: 41,nbsugg: 10,color: MhColors.orange,icon: Iconsax.emoji_sad5,mood: 'Sad'),
-
-            const SizedBox(height: MhSizes.spaceBetweenItems),
-
-            MhCardHisto(date: DateTime.utc(2024, 3, 23),hstate: 'Depressed',percentage: 16,nbsugg: 3,color: const Color(0xFFB8C1EC),icon: Iconsax.emoji_sad5,mood: 'Depressed'),
-          ],
+              ),
+            ),],
         ),
       ),
     );

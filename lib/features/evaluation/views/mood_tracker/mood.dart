@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mentalhealth_app/common/widgets/appbar/custom_appbar.dart';
 import 'package:mentalhealth_app/utils/constants/image_strings.dart';
+import '../../../../common/widgets/appbar/appbar.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sizes.dart';
 import '../evaluations/tests.dart';
@@ -26,8 +28,9 @@ class _MoodSelectionScreenState extends State<MoodSelectionScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Select Your Mood'),
+      appBar:CustomAppBar(
+        title: const Text('Select Your Mood', style: TextStyle(color: MhColors.blue),),
+        
       ),
       body: Center(
         child: Column(
@@ -80,12 +83,13 @@ class _MoodSelectionScreenState extends State<MoodSelectionScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Choose a Test'),
+          backgroundColor: MhColors.white,
+          title: Text('Choose a Test', style: TextStyle(color: MhColors.blue),),
           content: SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                _buildTestOption(context, 'GAD-7', selectedMood!),
-                _buildTestOption(context, 'PHQ-9', selectedMood!),
+                _buildTestOption(context, 'Generalized Anxiety Disorder 7-item Scale(GAD-7)', selectedMood!),
+                _buildTestOption(context, 'Patient Health Questionnaire-9(PHQ-9)', selectedMood!),
                 _buildTestOption(context, 'Perceived Stress Scale (PSS)', selectedMood!),
               ],
             ),
@@ -97,7 +101,7 @@ class _MoodSelectionScreenState extends State<MoodSelectionScreen> {
 
   Widget _buildTestOption(BuildContext context, String text, String userMood) {
     return ListTile(
-      title: Text(text),
+      title: Text(text, style: TextStyle(color: MhColors.darkerGrey),),
       onTap: () {
         Navigator.of(context).pop();
         if (text == 'GAD-7') {

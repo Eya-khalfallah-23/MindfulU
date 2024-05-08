@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:mentalhealth_app/features/personalization/controllers/user_controller.dart';
 
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/image_strings.dart';
@@ -25,14 +27,36 @@ class _ContactPageState extends State<ContactPage> {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(UserController());
     return Scaffold(
       body: SingleChildScrollView(
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(height: MhSizes.spaceBetweenSections*1.5,),
+              const SizedBox(
+                height: MhSizes.spaceBetweenSections * 1.5,
+              ),
               Image.asset(MhImages.appLogo, width: 120),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Hi!, ",style: TextStyle(
+                        fontSize: 20,
+                        color: MhColors.blue,
+                      ),
+                      textAlign: TextAlign.center,),
+                  Obx(
+                    () => Text(controller.user.value.userName,style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                          color: MhColors.blue,
+                        ),
+                        textAlign: TextAlign.center,),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 7,),
               Text("Your Well-being Matters!",
                   textAlign: TextAlign.center,
                   style: TextStyle(

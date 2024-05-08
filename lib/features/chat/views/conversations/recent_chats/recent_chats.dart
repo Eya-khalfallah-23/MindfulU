@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:mentalhealth_app/features/chat/views/conversations/recent_chats/widgets/historique.dart';
 import 'package:mentalhealth_app/features/chat/views/welcoming/first_conversation/first_conversation.dart';
@@ -12,6 +13,32 @@ class RecentChats extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: Container(
+        decoration: const BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Color.fromARGB(20, 75, 52, 37),
+              spreadRadius: 0,
+              blurRadius: 16,
+              offset: Offset(0, 8), // changes position of shadow
+            ),
+          ],
+        ),
+        child: ClipOval(
+          child: FloatingActionButton(
+            onPressed: () => Get.to(FirstConversation()),
+            backgroundColor: MhColors.blue,
+            child: Icon(
+              FontAwesomeIcons.plus,
+              color: MhColors.white,
+              size: 30,
+            ),
+            heroTag: "custom_fab", // Provide a unique heroTag
+            elevation: 15, // Add elevation to the FloatingActionButton
+          ),
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: Column(
         children: [
           Container(
@@ -29,13 +56,12 @@ class RecentChats extends StatelessWidget {
                       ),
                       child: Container(
                         width: 416,
-                        height: 240,
+                        height: 220,
                         color: MhColors.purple,
                       ),
                     ),
                   ),
                   Positioned(
-                    left: 147,
                     top: 45,
                     child: Image.asset(
                       MhImages.appLogo,
@@ -44,7 +70,6 @@ class RecentChats extends StatelessWidget {
                     ),
                   ),
                   const Positioned(
-                    left: 120,
                     top: 145,
                     child: Text(
                       'My AI Chats',
@@ -53,13 +78,13 @@ class RecentChats extends StatelessWidget {
                         fontWeight: FontWeight.w700,
                         color: MhColors.white,
                       ),
+                      textAlign: TextAlign.center,
                     ),
                   )
                 ],
               ),
             ),
           ),
-          const SizedBox(height: MhSizes.spaceBetweenSections / 3),
           Container(
             alignment: Alignment.bottomLeft,
             padding: const EdgeInsets.symmetric(horizontal: 25),
@@ -67,8 +92,8 @@ class RecentChats extends StatelessWidget {
               "Recents",
               style: TextStyle(
                   color: MhColors.blue,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700),
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600),
             ),
           ),
           const SizedBox(height: MhSizes.defaultSpace),
@@ -158,7 +183,8 @@ class RecentChats extends StatelessWidget {
               ],
             ),
           ),
-          Container(
+
+          /* Container(
             margin: const EdgeInsets.symmetric(vertical: 35),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(40), color: MhColors.blue),
@@ -172,7 +198,7 @@ class RecentChats extends StatelessWidget {
               ),
               onPressed: () => Get.to(() => FirstConversation()),
             ),
-          ),
+          ), */
         ],
       ),
     );

@@ -5,17 +5,14 @@ import 'package:mentalhealth_app/utils/device/device_utility.dart';
 
 import '../../../utils/constants/colors.dart';
 
-class MhAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const MhAppBar({
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const CustomAppBar({
     super.key,
     this.title,
     this.showBackArrow = false,
     this.actions,
-    this.leadingOnPressed,
     this.color = MhColors.blue,
-    this.leadingIcon = Icons.arrow_back_ios,
-    this.totalQuestions = 0,
-    this.currentQuestionIndex = 0,
+    this.leadingIcon = Icons.arrow_back_ios, this.leadingOnPressed
   });
 
   final Widget? title;
@@ -24,12 +21,9 @@ class MhAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Color color;
   final List<Widget>? actions;
   final VoidCallback? leadingOnPressed;
-  final int totalQuestions;
-  final int currentQuestionIndex;
 
   @override
   Widget build(BuildContext context) {
-    double progress = (currentQuestionIndex + 1) / totalQuestions;
     return AppBar(
       automaticallyImplyLeading: false,
       leading: showBackArrow
@@ -52,19 +46,6 @@ class MhAppBar extends StatelessWidget implements PreferredSizeWidget {
               : null,
       title: title,
       actions: actions,
-      bottom: PreferredSize(
-        preferredSize: const Size.fromHeight(4),
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width * 0.7,
-          child: LinearProgressIndicator(
-            value: progress,
-            backgroundColor: Colors.grey[300],
-            valueColor: const AlwaysStoppedAnimation<Color>(MhColors.orange),
-            minHeight: 8,
-            borderRadius: BorderRadius.circular(10)
-          ),
-        ),
-      ),
     );
   }
 

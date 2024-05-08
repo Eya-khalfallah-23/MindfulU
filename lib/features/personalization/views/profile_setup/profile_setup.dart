@@ -173,7 +173,43 @@ class ProfileSetupScreen extends StatelessWidget {
                       SizedBox(width: MhSizes.xs),
                       Icon(Icons.arrow_right_alt_rounded)
                     ],
-                  )))
+                  ))),
+                  const SizedBox(height: MhSizes.spaceBetweenItems),
+                  // delete button
+                  Container(
+                width: double.infinity,
+                decoration: const BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color.fromARGB(5, 75, 52, 37),
+                      spreadRadius: 0,
+                      blurRadius: 16,
+                      offset: Offset(0, 4), // changes position of shadow
+                    ),
+                  ],
+                ),
+                child: ElevatedButton(
+                    onPressed: () {},
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(MhColors.white),
+                      surfaceTintColor:
+                          MaterialStateProperty.all<Color>(Colors.transparent),
+                      shadowColor: MaterialStateProperty.all<Color>(
+                        const Color.fromARGB(45, 75, 52, 37),
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("Delete Account", style: TextStyle(color: MhColors.orange)),
+                        const SizedBox(width: MhSizes.xs),
+                        Icon(
+                          Icons.delete_forever_rounded,
+                          color: MhColors.orange,
+                        ),
+                      ],
+                    )))
         ],
           ),
     ),
