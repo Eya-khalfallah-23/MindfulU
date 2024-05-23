@@ -11,10 +11,10 @@ class MhImages {
   static const String cell = "assets/images/contacts_images/listening_cell.png";
 
   //-- Onboarding
-  static const String support ="assets/images/animations/support.png";
+  static const String support = "assets/images/animations/support.png";
   static const String evaluation = "assets/images/animations/evaluation.png";
-  static const String chatbot ="assets/images/animations/chatbot.png";
-  static const String welcome ="assets/images/animations/welcome.png";
+  static const String chatbot = "assets/images/animations/chatbot.png";
+  static const String welcome = "assets/images/animations/welcome.png";
 
   //-- Moods
   static const String happy = "assets/images/moods/mood-joy.png";
@@ -28,12 +28,11 @@ class MhImages {
 
   static const String verifiedEmail =
       "assets/images/animations/success-verify.gif";
-  static const String loadingScreen =
-      "assets/images/animations/loading.gif";
-
+  static const String loadingScreen = "assets/images/animations/loading.gif";
 
   static const String profilePic = "assets/images/profile.jpg";
   static const String chatbotpic1 = "assets/images/Frame.png";
   static const String chatbotpic2 = "assets/images/Group 33.png";
+  static const String prof = "assets/images/Group 40.png";
+  static const String statistique = "assets/images/Group 11.png";
 }
-

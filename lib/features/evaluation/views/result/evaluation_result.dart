@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:mentalhealth_app/features/evaluation/views/result/recommendations.dart';
 import 'package:mentalhealth_app/utils/constants/image_strings.dart';
 import 'package:mentalhealth_app/utils/constants/sizes.dart';
 import 'package:uuid/uuid.dart';
@@ -197,7 +198,7 @@ class _ResultPageState extends State<ResultPage> {
                   ],
                 ),
                 child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed:  () => Get.to(() =>  RecommendationPage()),
                     style: ButtonStyle(
                       backgroundColor:
                           MaterialStateProperty.all<Color>(MhColors.white),

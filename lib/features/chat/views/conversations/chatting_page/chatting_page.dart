@@ -69,7 +69,7 @@ class _ChatScreenState extends State<ChatScreen> {
     // Envoi du message au serveur rasa
     final response = await http.post(
       Uri.parse(
-          'https://4475-197-9-74-236.ngrok-free.app/webhooks/rest/webhook'),
+          'https://2d77-197-21-204-203.ngrok-free.app/webhooks/rest/webhook'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },

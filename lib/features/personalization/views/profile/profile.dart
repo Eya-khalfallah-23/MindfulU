@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
@@ -58,7 +60,15 @@ class UserProfile extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  Expanded(child: Container()),
+                  Expanded(child: Container(
+                    child:Column(
+                      children: [
+                        const SizedBox(height: MhSizes.md),
+                        Text("Chats",style: TextStyle(color:MhColors.blue,fontWeight: FontWeight.w500),),
+                        Text("10",style: TextStyle(color:MhColors.blue,fontWeight: FontWeight.bold,fontSize: 17,))
+                      ],
+                    )
+                  )),
                   const FractionallySizedBox(
                     heightFactor: 0.75, // Height factor set to 80%
                     child: VerticalDivider(
@@ -66,7 +76,15 @@ class UserProfile extends StatelessWidget {
                       width: 1, // Width of the divider
                     ),
                   ),
-                  Expanded(child: Container()),
+                  Expanded(child: Container(
+                    width: 55,
+            height: 58,
+            alignment: Alignment.center,
+            child: Image.asset(
+              MhImages.prof,
+              fit: BoxFit.cover,
+            ),
+                  )),
                   const FractionallySizedBox(
                     heightFactor: 0.75, // Height factor set to 80%
                     child: VerticalDivider(
@@ -74,7 +92,15 @@ class UserProfile extends StatelessWidget {
                       width: 1, // Width of the divider
                     ),
                   ),
-                  Expanded(child: Container()),
+                  Expanded(child: Container(
+                    child:Column(
+                      children: [
+                        const SizedBox(height: MhSizes.md),
+                        Text("Tests",style: TextStyle(color:MhColors.blue,fontWeight: FontWeight.w500),),
+                        Text("24",style: TextStyle(color:MhColors.blue,fontWeight: FontWeight.bold,fontSize: 17,))
+                      ],
+                    )
+                  )),
                 ],
               ),
             ),
@@ -83,6 +109,27 @@ class UserProfile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
+                  child:Column(
+                    
+                    crossAxisAlignment: CrossAxisAlignment.center,
+
+                    children: [
+                      const SizedBox(height: MhSizes.md),
+                      Row(
+                        children: [
+                          const SizedBox(width: MhSizes.lg),
+                          Icon(Icons.favorite,color: MhColors.white,size: 24,),
+                          const SizedBox(width: MhSizes.sm),
+                          Text("Score",style:TextStyle(color: MhColors.white,fontWeight: FontWeight.w400,fontSize: 17))
+                        ],
+                      ),
+                      Text("PSS",style: TextStyle(color: MhColors.white,fontWeight: FontWeight.w800,fontSize: 20)),
+                       const SizedBox(height: MhSizes.xs),
+                      Text("24",style: TextStyle(color:MhColors.white,fontSize:30,fontWeight: FontWeight.w700),),
+                      Text("Moderate Stress",style:TextStyle(color:MhColors.white,fontSize:15),),
+                    ],
+
+                  ),
                   width: 160,
                   height: 180,
                   decoration: BoxDecoration(
@@ -100,6 +147,30 @@ class UserProfile extends StatelessWidget {
                 ),
                 const SizedBox(width: MhSizes.spaceBtwInputFields),
                 Container(
+                  child:Column(
+                    
+                    crossAxisAlignment: CrossAxisAlignment.center,
+
+                    children: [
+                      const SizedBox(height: MhSizes.md),
+                      Row(
+                        children: [
+                          const SizedBox(width: MhSizes.lg),
+                          Icon(FontAwesomeIcons.solidFrownOpen,color: MhColors.white,size: 23,),
+                          const SizedBox(width: MhSizes.sm),
+                          Text("Mood",style:TextStyle(color: MhColors.white,fontWeight: FontWeight.w400,fontSize: 17))
+                        ],
+                      ),
+                      Text("Sad",style: TextStyle(color: MhColors.white,fontWeight: FontWeight.w800,fontSize: 20)),
+                      Container(
+                    width: 105,
+                    height: 100,
+                    alignment: Alignment.center,
+                    child: Image.asset(
+                      MhImages.statistique,
+                      fit: BoxFit.cover,
+                    ),)
+                    ],),
                   width: 160,
                   height: 180,
                   decoration: BoxDecoration(
