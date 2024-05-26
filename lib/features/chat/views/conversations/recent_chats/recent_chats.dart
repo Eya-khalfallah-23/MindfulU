@@ -110,8 +110,8 @@ class RecentChats extends StatelessWidget {
                     width:
                         300, // Largeur personnalisée pour l'élément Historique
                     child: Historique(
-                      date: DateTime.utc(2024, 5, 8),
-                      hstate: "Demande d'aide pour la dépression",
+                      date: DateTime.utc(2024, 5, 23),
+                      hstate: "Sentiment d'inutilité",
                       nbMsg: 80,
                     ),
                   ),
@@ -123,7 +123,7 @@ class RecentChats extends StatelessWidget {
                     width:
                         300, // Largeur personnalisée pour l'élément Historique
                     child: Historique(
-                      date: DateTime.utc(2024, 5, 8),
+                      date: DateTime.utc(2024, 5, 23),
                       hstate: 'Questions sur la santé mentale',
                       nbMsg: 55,
                     ),
@@ -136,7 +136,7 @@ class RecentChats extends StatelessWidget {
                     width:
                         300, // Largeur personnalisée pour l'élément Historique
                     child: Historique(
-                      date: DateTime.utc(2024, 5, 5),
+                      date: DateTime.utc(2024, 5, 23),
                       hstate: "Partage d'expérience sur l'anxiété",
                       nbMsg: 34,
                     ),
